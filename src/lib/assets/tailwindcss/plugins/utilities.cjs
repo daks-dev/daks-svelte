@@ -60,14 +60,6 @@ module.exports = plugin(function ({ addUtilities }) {
         clear: 'both'
       }
     },
-    ['.drop-shadow--deep']: {
-      'filter': `drop-shadow(0 4px 3px rgb(0 0 0 / 0.4))
-                 drop-shadow(0 2px 2px rgb(0 0 0 / 0.2))`
-    },
-    ['.drop-shadow--hard']: {
-      'filter': `drop-shadow(0 4px 3px rgb(0 0 0 / 0.7))
-                 drop-shadow(0 2px 2px rgb(0 0 0 / 0.4))`
-    },
     ['.text-shadow']: {
       'text-shadow': `var(--text-shadow-val)
                       var(--text-shadow-val)

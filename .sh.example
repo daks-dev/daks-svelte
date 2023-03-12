@@ -3,30 +3,27 @@
 ac="yes";
 until [ $ac = "-" ]; do
     echo -e "";
-    echo -e "+ : start [node]";
+    echo -e "+ : git:pull";
     echo -e "";
     echo -e "1 : npm:install";
     echo -e "2 : npm:update";
-    echo -e "3 : svelte:package";
     echo -e "";
     echo -e "4 : svelte:check";
     echo -e "5 : vite:build";
     echo -e "";
-    echo -e "7 : create:sitemap";
+    echo -e "7 : git:status";
+    echo -e "8 : git:restore";
     echo -e "";
-    echo -e "9 : npm:publish";
     echo -e "0 : clean";
     echo -e "";
-    echo -e "m : memcached:restart";
-    echo -e "s : ▼ supervisor";
     echo -e "n : ▼ nginx";
     echo -e "";
     echo -e "Type \c ";
     read  ac;
     case $ac in
         "+")
-            echo -e "> start [node]";
-            node build/index.js;;
+            echo -e "> git:pull";
+            git pull;;
 
         "1")
             echo -e "> npm:install";
@@ -35,10 +32,6 @@ until [ $ac = "-" ]; do
         "2")
             echo -e "> npm:update";
             npm update;;
-
-        "3")
-            echo -e "> svelte:package";
-            npm run package;;
 
         "4")
             echo -e "> svelte:check";
@@ -49,14 +42,12 @@ until [ $ac = "-" ]; do
             npm run build;;
 
         "7")
-            echo -e "> create:sitemap";
-            npm run create:sitemap;;
+            echo -e "> git:status";
+            git status;;
 
-        "9")
-            echo -e "> npm:publish";
-            cd package;
-            npm publish;
-            cd ..;;
+        "8")
+            echo -e "> git:restore";
+            git restore .;;
 
         "0")
             echo -e "> clean";
@@ -64,39 +55,6 @@ until [ $ac = "-" ]; do
             rm -rf build/{*,.*};
             rm -rf node_modules/{*,.*};
             rm -f package-lock.json;;
-
-        "m")
-            echo -e "> memcached:restart";
-            sudo service memcached restart;;
-
-        "s")
-            acc="yes";
-            until [[ $acc == "-" ]]; do
-                echo -e "";
-                echo -e "    1 : stop vps.daks";
-                echo -e "    2 : start vps.daks";
-                echo -e "    3 : restart vps.daks";
-                echo -e "    4 : restart all";
-                echo -e "    - : exit";
-                echo -e "";
-                echo -e "    Type \c ";
-                read  acc;
-                case $acc in
-                    "1")
-                        echo -e "> supervisor:stop vps.daks";
-                        sudo supervisorctl stop vps.daks;;
-                    "2")
-                        echo -e "> supervisor:start vps.daks";
-                        sudo supervisorctl start vps.daks;;
-                    "3")
-                        echo -e "> supervisor:restart vps.daks";
-                        sudo supervisorctl reread;
-                        sudo supervisorctl restart vps.daks;;
-                    "4")
-                        echo -e "> supervisor restart all";
-                        sudo systemctl restart supervisor;;
-                esac
-            done;;
 
         "n")
             acc="yes";
