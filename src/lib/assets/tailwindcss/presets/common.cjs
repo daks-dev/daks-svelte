@@ -76,12 +76,12 @@ module.exports = {
       },
       dropShadow: {
         'deep': [
-          '0 4px 3px rgb(0 0 0 / 0.4',
+          '0 4px 3px rgb(0 0 0 / 0.4)',
           '0 2px 2px rgb(0 0 0 / 0.2)'
         ],
         'hard': [
-          '0 4px 3px rgb(0 0 0 / 0.7',
-          '0 2px 2px rgb(0 0 0 / 0.4'
+          '0 4px 3px rgb(0 0 0 / 0.7)',
+          '0 2px 2px rgb(0 0 0 / 0.4)'
         ]
       }
     }
