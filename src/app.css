@@ -1,0 +1,51 @@
+@import '$lib/assets/fonts/open-sans/variable';
+@import '$lib/assets/tailwindcss';
+
+@layer base {
+  :root {
+    --navbar-height: 44px;
+  }
+
+  body {
+    @apply relative
+           text-gray-800 dark:text-neutral-100
+           bg-neutral-100 dark:bg-gray-800;
+  }
+
+  h1 {
+    @apply font-bold tracking-wide
+           text-3xl sm:text-4xl md:text-4.5xl lg:text-5xl
+           text-gray-500 dark:text-gray-300;
+  }
+}
+
+@layer utilities {
+  .min-h-screen--navbar {
+    min-height: calc(100vh - var(--navbar-height));
+  }
+  .max-h-screen--navbar {
+    max-height: calc(100vh - var(--navbar-height));
+  }
+
+  .snap-start,
+  .snap-center {
+    scroll-margin-top: var(--navbar-height);
+  }
+
+  .title {
+    @apply after:content-null after:block after:mt-4
+           after:w-[25vw] sm:after:w-[20vw] lg:after:w-[15vw] 2xl:after:w-[10vw] after:h-[5px]
+           after:bg-cyan-600 after:dark:bg-cyan-700;
+  }
+}
+
+main,
+[role='main'] {
+  @apply flex flex-col;
+  padding-top: var(--navbar-height);
+}
+main > header,
+[role='main'] > header {
+  @apply pt-4 sm:pt-5 md:pt-8 xl:pt-12
+         mb-12 md:mb-14 xl:mb-16;
+}

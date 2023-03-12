@@ -1,0 +1,61 @@
+{
+  "ic": [
+    "outline-location-on",
+    "outline-settings",
+    "round-alternate-email",
+    "round-close",
+    "round-arrow-forward-ios",
+    "round-arrow-right",
+    "round-block",
+    "round-check",
+    "round-check-box",
+    "round-check-box-outline-blank",
+    "round-chevron-right",
+    "round-error-outline",
+    "round-link",
+    "round-mail-outline",
+    "round-map",
+    "round-menu",
+    "round-minus",
+    "round-more-vert",
+    "round-phone-android",
+    "round-phone-in-talk",
+    "round-plus",
+    "round-search",
+    "round-search-off",
+    "round-unfold-less",
+    "round-unfold-more",
+    "round-zoom-in",
+    "round-zoom-in-map",
+    "round-zoom-out",
+    "round-zoom-out-map",
+    "twotone-dark-mode",
+    "twotone-light-mode"
+  ],
+  "line-md": [
+    "alert-circle-twotone",
+    "github-loop",
+    "home-simple",
+    "home-simple-filled",
+    "home-simple-twotone",
+    "light-dark-loop",
+    "moon-to-sunny-outline-loop-transition",
+    "sunny-outline-to-moon-loop-transition"
+  ],
+  "svg-spinners": [
+    "180-ring-with-bg",
+    "8-dots-rotate",
+    "clock",
+    "dot-revolve",
+    "wind-toy"
+  ],
+  "mdi": [
+    "cube",
+    "cube-outline",
+    "link-variant",
+    "transfer-up"
+  ],
+  "wpf": [
+    "search"
+  ]
+}

@@ -1,0 +1,12 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* LazyLoad */
+img:not([src]):not([srcset]) {
+  @apply invisible;
+}
+
+img.lazy-loaded {
+  @apply bg-none;
+}

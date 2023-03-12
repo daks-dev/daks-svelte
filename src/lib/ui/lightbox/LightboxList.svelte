@@ -1,0 +1,167 @@
+<script lang="ts">
+  import classNames from 'classnames';
+  import { onMount, setContext } from 'svelte';
+  import { writable, type Writable } from 'svelte/store';
+  import Overlay from './components/Overlay.svelte';
+  import Header from './components/Header.svelte';
+  import Footer from './components/Footer.svelte';
+  import Body from './components/Body.svelte';
+  import Controller from './components/Controller.svelte';
+  import type { Options, Custom, Item, Loader } from '.';
+
+  import './index.css';
+
+  // Lightbox
+  let className: any = undefined;
+  export { className as class };
+
+  export let custom: Custom = {};
+
+  export let tag = 'div';
+
+  export let title = '';
+  export let subtitle = '';
+  export let description = '';
+
+  export let fullscreen = false;
+  export let scrollable = false;
+
+  export let options: Options = {};
+  options = Object.assign(
+    {
+      behaviour: '',
+      swipe: true,
+      wheel: true,
+      clickableClose: true,
+      buttonClose: true,
+      buttonFullscreen: true,
+      enableKeyboard: true,
+      bodyScroll: false,
+      duration: 300
+    },
+    options
+  );
+
+  export let loader: Loader = undefined;
+
+  if (scrollable) fullscreen = options.buttonFullscreen = false;
+
+  // LightboxList
+  let activeItem = 0;
+  export { activeItem as active };
+
+  // -----
+  $: fullscreen;
+
+  let controller: Controller;
+
+  let visible = false;
+
+  let items: Item[] = [];
+  let countThumbnails = 0;
+
+  let toggleScroll: Function;
+
+  export const toggle = () => {
+    visible = !visible;
+    toggleScroll();
+  };
+
+  export const open = () => {
+    visible = true;
+    toggleScroll();
+  };
+
+  export const close = () => {
+    visible = false;
+    toggleScroll();
+  };
+
+  export const openImage = (id: number) => {
+    open();
+    activeItem = id;
+  };
+
+  const toogleFullscreen = () => (fullscreen = !fullscreen);
+
+  const keepOrEmptyImageList = (visible: boolean) => {
+    if (!visible) items = [];
+  };
+  $: keepOrEmptyImageList(visible);
+
+  const countItemsStore: Writable<number> = writable(items.length);
+  const activeItemStore: Writable<number> = writable(activeItem);
+  $: activeItemStore.set(activeItem);
+
+  $: status = { countItems: $countItemsStore, activeItem: $activeItemStore };
+
+  setContext('activeItem', activeItemStore);
+  setContext('counterItems', (item: Item) => {
+    item.id = items.length;
+    items = [...items, item];
+    $countItemsStore = items.length;
+    return $countItemsStore - 1;
+  });
+  setContext('counterThumbnails', () => {
+    return countThumbnails++;
+  });
+  setContext('openImage', openImage);
+
+  $: activeItemTitle = items[$activeItemStore]?.title || title || '';
+  $: activeItemSubTitle = items[$activeItemStore]?.subtitle || subtitle || '';
+  $: activeItemDescription = items[$activeItemStore]?.description || description || '';
+
+  onMount(() => {
+    loader?.call(null);
+    if (!options.bodyScroll || scrollable) {
+      toggleScroll = () => {
+        if (visible) document.body.classList.add('overflow-y-hidden');
+        else document.body.classList.remove('overflow-y-hidden');
+      };
+    }
+  });
+</script>
+
+{#if $$slots.thumbnail}
+  <svelte:element
+    this={tag}
+    class={classNames(className)}>
+    <slot name="thumbnail" />
+  </svelte:element>
+{/if}
+
+{#if visible}
+  <Overlay
+    on:close={close}
+    on:previous={controller.previous}
+    on:next={controller.next}
+    {custom}
+    {fullscreen}
+    {options}>
+    <Header
+      on:close={close}
+      on:fullscreen={toogleFullscreen}
+      {custom}
+      {fullscreen}
+      {options} />
+    <Controller
+      bind:this={controller}
+      {options}
+      {countItemsStore}
+      {activeItemStore}>
+      <Body
+        {fullscreen}
+        {scrollable}
+        {options}>
+        <slot />
+      </Body>
+    </Controller>
+    <Footer
+      {custom}
+      {fullscreen}
+      title={activeItemTitle}
+      subtitle={activeItemSubTitle}
+      description={activeItemDescription}
+      {status} />
+  </Overlay>
+{/if}
