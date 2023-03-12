@@ -15,13 +15,15 @@ module.exports = {
   theme: {
     screens: {
       xs: '480px',
-      ...defaultTheme.screens
+      ...defaultTheme.screens,
+      '3xl': '1680px',
     },
     extend: {
       container: {
         center: true
       },
       screens: {
+        '-3xl': { max: '1679px' },
         '-2xl': { max: '1535px' },
         '-xl': { max: '1279px' },
         '-lg': { max: '1023px' },
