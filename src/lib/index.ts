@@ -1,6 +1,8 @@
 // app
 export { default as lazyload } from './app/lazyload';
 
+export { default as AppHead } from './app/AppHead.svelte';
+
 // assets
 export { default as placeholder } from './assets/icons/placeholder';
 
