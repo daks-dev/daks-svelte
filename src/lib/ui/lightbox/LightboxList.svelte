@@ -44,7 +44,7 @@
 
   export let loader: Loader = undefined;
 
-  if (scrollable) fullscreen = options.buttonFullscreen = false;
+  if (scrollable) fullscreen = options.buttonFullscreen = options.wheel = false;
 
   // LightboxList
   let activeItem = 0;

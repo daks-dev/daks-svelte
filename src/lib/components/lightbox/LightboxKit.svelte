@@ -8,6 +8,7 @@
     type Custom,
     type Loader
   } from '$lib/ui/lightbox';
+  import Sign from '$lib/components/sign/Sign.svelte';
   import Figure from '$lib/shared/figure/Figure.svelte';
   import type { DataImage } from '$lib/types';
 
@@ -34,6 +35,12 @@
   options = Object.assign({ behaviour: 'loop' }, options);
 
   export let loader: Loader = () => document?.lazyload.update();
+
+  export let sign: any = undefined;
+  if (sign === true) sign = {
+    icon: 'ic:round-zoom-out-map',
+    dark: true
+  };
 </script>
 
 <LightboxList
@@ -51,7 +58,11 @@
   {...$$restProps}>
   <svelte:fragment slot="thumbnail">
     {#each thumbnails as data, idx}
-      <LightboxThumbnail>
+      <LightboxThumbnail
+        class={classNames(sign && 'relative group')}>
+        {#if sign}
+          <Sign {...sign} />
+        {/if}
         <Figure
           {data}
           class={classNames('flex flex-col', {
@@ -61,13 +72,11 @@
             image: classNames({
               'w-full max-w-full h-auto object-contain': adaptive,
               rounded,
-              'shadow-md hover:shadow-lg': shadow,
-              'shadow-slate-700 hover:shadow-slate-800': shadow,
-              'dark:shadow-slate-400 dark:hover:shadow-slate-500': shadow,
+              'drop-shadow-deep hover:drop-shadow-hard': shadow,
               'hover:scale-105': scale,
               'grayscale hover:grayscale-0': grayscale,
               'invert hover:invert-0': invert,
-              'transition-all duration-500 ease-in-out': shadow || scale || grayscale || invert
+              'transition duration-500 ease-in-out': shadow || scale || grayscale || invert
             }),
             caption: classNames('pt-2 flex flex-col', {
               'text-center': centered,

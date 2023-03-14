@@ -2,7 +2,7 @@
   import classNames from 'classnames';
   import Icon from '$lib/ui/iconify';
 
-  let className: any = undefined;
+  let className: any = 'top-2 left-2';
   export { className as class };
 
   export let icon = 'mdi:link-variant';

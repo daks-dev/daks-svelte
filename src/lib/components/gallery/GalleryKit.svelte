@@ -39,13 +39,11 @@
     image: classNames(custom.image, {
       'w-full max-w-full h-auto object-contain': adaptive,
       rounded,
-      'shadow-md hover:shadow-lg': shadow,
-      'shadow-slate-700 hover:shadow-slate-800': shadow,
-      'dark:shadow-slate-400 dark:hover:shadow-slate-500': shadow,
+      'drop-shadow-deep hover:drop-shadow-md': shadow,
       'hover:scale-105': scale,
       'grayscale hover:grayscale-0': grayscale,
       'invert hover:invert-0': invert,
-      'transition-all duration-500 ease-in-out': shadow || scale || grayscale || invert
+      'transition duration-500 ease-in-out': scale || grayscale || invert
     }),
     caption: classNames(custom.caption, {
       'text-center': centered,

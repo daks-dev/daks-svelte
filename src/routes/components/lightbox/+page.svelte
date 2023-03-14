@@ -27,6 +27,7 @@
       tag="aside"
   images={gallery.sources}
   thumbnails={gallery.squares}
+  sign
   grid
   rounded
   shadow
