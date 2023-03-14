@@ -21,16 +21,20 @@
       }
   };
 
-  const actionSwipe = (delta: { x: number; h: boolean; v: boolean }): void => {
-    if (options.swipe && delta.h && !delta.v) dispatch(delta.x > 0 ? 'previous' : 'next');
-  };
+  const actionSwipe = options.swipe
+    ? (delta: { x: number; h: boolean; v: boolean }): void => {
+        if (options.swipe && delta.h && !delta.v) dispatch(delta.x > 0 ? 'previous' : 'next');
+      }
+    : undefined;
 
-  const actionWheel = (delta: { y: number }): void => {
-    if (options.wheel) {
-      delta.y > 0 && dispatch('next');
-      delta.y < 0 && dispatch('previous');
-    }
-  };
+  const actionWheel = options.wheel
+    ? (delta: { y: number }): void => {
+        if (options.wheel) {
+          delta.y > 0 && dispatch('next');
+          delta.y < 0 && dispatch('previous');
+        }
+      }
+    : undefined;
 
   const handleClick = () => options.clickableClose && dispatch('close');
 

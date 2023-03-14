@@ -13,7 +13,6 @@
 
 <div
   class={classNames(
-    'content',
     'flex flex-col justify-between gap-4',
     'text-base md:text-lg lg:text-xl text-sky-800 dark:text-sky-200',
     className
