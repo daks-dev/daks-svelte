@@ -2,12 +2,12 @@
   import { afterNavigate, goto } from '$app/navigation';
   import { page } from '$app/stores';
   import { swipe } from '$lib/utils/Swipe';
-  import modeStore from '$lib/components/route-transition/store';
+  import { routeTransitionMode } from '$lib/stores';
 
   export let scope: string[];
   export let paging = false;
 
-  const modeDefault = $modeStore;
+  const modeDefault = $routeTransitionMode;
 
   const handleSwipe = (delta: { h: boolean; v: boolean; x: number }) => {
     if (delta.h && !delta.v) {
@@ -20,13 +20,13 @@
       }
       const href = idx === -1 ? '/' : scope[idx];
       if (href) {
-        if ($modeStore) $modeStore = (paging && 3) || (delta.x > 0 ? 1 : 2);
+        if ($routeTransitionMode) $routeTransitionMode = (paging && 3) || (delta.x > 0 ? 1 : 2);
         goto(href);
       }
     }
   };
 
-  afterNavigate(() => ($modeStore = modeDefault));
+  afterNavigate(() => ($routeTransitionMode = modeDefault));
 </script>
 
 <svelte:body use:swipe.touch={handleSwipe} />

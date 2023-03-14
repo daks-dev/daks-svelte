@@ -5,7 +5,7 @@
   import { counter } from '.';
   import type { Timeout } from '$lib/types';
 
-  export let robots: undefined | string = undefined;
+  export let robots = 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1';
   export let title: string;
   export let description: string;
   export let canonical =

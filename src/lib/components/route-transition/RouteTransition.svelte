@@ -2,24 +2,25 @@
   import { blur, fly } from 'svelte/transition';
   import { sineIn, sineOut } from 'svelte/easing';
   import { navigating } from '$app/stores';
-  import modeStore from './store';
+  import { routeTransitionMode } from '$lib/stores';
 
   let className: undefined | string = undefined;
   export { className as class };
 
   export let referesh!: string;
-  export let mode: undefined | string | number = undefined;
+  export let mode: number | string = 0;
   export let tag = 'div';
 
   const duration = 500;
   const delay = 100;
 
-  if (typeof mode !== 'undefined') $modeStore = Number(mode);
+  $routeTransitionMode = Number(mode);
 
-  const transition = $modeStore ? fly : blur;
+  const roots: any = ['/', '/admin', '/search']
+  const transition = $routeTransitionMode ? fly : blur;
   const options = () => {
-    if ($navigating?.to?.url.pathname !== '/')
-      switch ($modeStore) {
+    if (!roots.includes($navigating?.to?.url.pathname))
+      switch ($routeTransitionMode) {
         case 3:
           return {
             in: {

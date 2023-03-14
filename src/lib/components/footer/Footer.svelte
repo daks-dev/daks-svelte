@@ -1,7 +1,7 @@
 <script lang="ts">
   import classNames from 'classnames';
   import { Link, Nav, type NavItem } from '$lib/shared';
-  import time from './store';
+  import { sessionTime } from '$lib/stores';
 
   let className: any = 'bg-neutral-200/50 dark:bg-inherit';
   export { className as class };
@@ -26,13 +26,17 @@
       leading-loose font-mono font-thin text-2xs xs:text-xs sm:text-sm sm:tracking-wide text-gray-500">
     {#if copylink}
       <Link
-        class="pr-4 mr-auto hover:text-sky-500"
+        class="
+          pr-4 mr-auto
+          hover:text-sky-500 dark:hover:text-sky-300"
         {...Nav.props(copylink)}>
         <span slot="before">&copy;{year}</span>
       </Link>
     {:else}
       <Link
-        class="pr-4 mr-auto hover:text-sky-500"
+        class="
+          pr-4 mr-auto
+          hover:text-sky-500 dark:hover:text-sky-300"
         label="custom:svelte-logo"
         href="//kit.svelte.dev"
         size="18">
@@ -46,7 +50,11 @@
       <nav class="flex flex-wrap items-center mx-4">
         {#each links as link}
           <Link
-            class="px-4 text-right hover:text-sky-500"
+            class="
+              px-4
+              text-right
+              hover:text-sky-500 dark:hover:text-sky-300
+              page:text-cyan-700 step:text-slate-800 dark:step:text-slate-300"
             {...Nav.props(link)}
             size="18" />
         {/each}
@@ -54,7 +62,7 @@
     {/if}
 
     <div class="pl-4 text-slate-400">
-      {timer.format($time)}
+      {timer.format($sessionTime)}
     </div>
   </div>
 </footer>

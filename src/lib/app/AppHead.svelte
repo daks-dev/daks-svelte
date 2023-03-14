@@ -7,7 +7,7 @@
 
   export let app: undefined | AppMeta = undefined;
 
-  export let robots: undefined | string = undefined;
+  export let robots = 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1';
   export let title: undefined | string = undefined;
   export let description: undefined | string = undefined;
   export let canonical: undefined | string = undefined;

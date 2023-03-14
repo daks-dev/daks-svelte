@@ -1,6 +1,6 @@
 <script lang="ts">
   import classNames from 'classnames';
-  import Icon from '$lib/ui/iconify';
+  import Icon from '$lib/ui/iconify/Icon.svelte';
 
   let className: any = 'top-2 left-2';
   export { className as class };

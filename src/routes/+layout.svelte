@@ -17,12 +17,11 @@
 
   import { app, nav } from '$configs';
 
-  // && window.matchMedia('(prefers-color-scheme: dark)').matches
   if (BROWSER) {
-    if (!('color-theme' in localStorage)) {
-      localStorage.setItem('color-theme', 'dark');
-      document.documentElement.classList.add('dark');
-    }
+    /*if (
+      localStorage.getItem('color-theme') === 'dark'
+      || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) document.documentElement.classList.add('dark');*/
     document.lazyload ??= lazyload();
   }
 </script>

@@ -1,3 +1,4 @@
+
 <script lang="ts">
   import { onMount } from 'svelte';
   import Icon from '$lib/ui/iconify/Icon.svelte';
@@ -7,7 +8,8 @@
 
   export let icons = [
     // 'ic:twotone-dark-mode', 'ic:twotone-light-mode'
-    'line-md:sunny-outline-to-moon-loop-transition', 'line-md:moon-to-sunny-outline-loop-transition'
+    'line-md:sunny-outline-to-moon-loop-transition',
+    'line-md:moon-to-sunny-outline-loop-transition'
   ];
   export let size: number | string = '1.25em';
 
@@ -20,17 +22,24 @@
   onMount(() => (dark = document.documentElement.classList.contains('dark')));
 </script>
 
-<!--svelte:head>
+<!--
+if (window)
+  localStorage.getItem('color-theme') === 'dark' ||
+  (!('color-theme' in localStorage) &&
+    window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ? document.documentElement.classList.add('dark')
+    : document.documentElement.classList.remove('dark');
+-->
+<svelte:head>
   <script>
-    if (window) {
-      localStorage.getItem('color-theme') === 'dark' ||
-      (!('color-theme' in localStorage) &&
-        window.matchMedia('(prefers-color-scheme: dark)').matches)
-        ? document.documentElement.classList.add('dark')
-        : document.documentElement.classList.remove('dark');
-    }
+    ((w, l, d) =>
+      l.getItem('color-theme') === 'dark' ||
+      (!('color-theme' in l) && w.matchMedia('(prefers-color-scheme: dark)').matches)
+        ? d.add('dark')
+        : d.remove('dark')
+    )(window, localStorage, document.documentElement.classList)
   </script>
-</svelte:head-->
+</svelte:head>
 
 <button
   on:click={toggle}
