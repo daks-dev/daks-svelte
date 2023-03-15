@@ -1,7 +1,7 @@
 <script lang="ts">
   import { DEV } from 'esm-env';
   import AppHead from '$lib/app/AppHead.svelte';
-  import SvelteKit from '$lib/components/svetle-kit/SvelteKit.svelte';
+  import SvelteKit from '$lib/components/svelte-kit/SvelteKit.svelte';
 
   const robots = 'noindex, follow';
   const title = 'DAKS • Admin';

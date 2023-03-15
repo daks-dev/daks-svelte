@@ -27,6 +27,8 @@ export { default as ScreenBlock } from './components/screen-block/ScreenBlock.sv
 
 export { default as Sign } from './components/sign/Sign.svelte';
 
+export { default as SvelteKit } from './components/svelte-kit/SvelteKit.svelte';
+
 export { default as BagePlaceholder } from './components/skeleton/BagePlaceholder.svelte';
 export { default as CardPlaceholder } from './components/skeleton/CardPlaceholder.svelte';
 export { default as ImagePlaceholder } from './components/skeleton/ImagePlaceholder.svelte';
